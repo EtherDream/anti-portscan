@@ -1,3 +1,13 @@
+## QuickStart
+ ```
+git clone https://github.com/EtherDream/anti-portscan
+cd anti-portscan
+vim install.sh # 修改需要打开的端口
+sudo sh install.sh
+ ```
+
+请注意，使用前一定要修改install.sh中你需要打开的端口！
+
 ## 原理和实现
 
 如何拦截端口扫描？其实有个简单的思路：布置陷阱。我们随机监听一些未使用的端口，假如有 IP 在短时间内前来连接好几个，那么很可能就是扫描者。于是可临时屏蔽该 IP 所有流量，保护那些还未被扫到的端口。

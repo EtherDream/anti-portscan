@@ -16,11 +16,12 @@ INPUT="-A INPUT"
 # INPUT=-t raw -A PREROUTING
 
 
-# 开放的端口
+# 开放的端口范围（默认即可）
 ipset create pub-port-set bitmap:port range 0-65535
 
+# ***** 注意！！请向pub-port-set集合中加入你需要开放的端口 ********
 # 如果应用程序端口有变化，需及时更新该 set，否则正常用户会被当成扫描者
-# ipset add pub-port-set 12345
+ ipset add pub-port-set 22 # 默认打开22端口 防止服务器无法登陆
 
 # 名单最大条数
 # 例如 100Mbps 网络下 IP_DENY_SECOND 秒能收到多少 SYN 包？（SYN 最小 60B）
