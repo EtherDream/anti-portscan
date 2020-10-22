@@ -218,6 +218,14 @@ https://github.com/EtherDream/anti-portscan/blob/master/install.sh
 
 可以试试多久找出这个 HTTP 端口？
 
-IP：106.13.167.86
+IP：146.56.248.195
 
-![demo.png](https://github.com/EtherDream/anti-portscan/blob/master/demo.png)
+![demo.png](demo.png)
+
+<details>
+<summary>查看答案：</summary>
+  <details>
+  <summary>确定查看？</summary>
+  http://146.56.248.195:39172
+  </details>
+</details>
