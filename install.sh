@@ -20,10 +20,13 @@ INPUT="-A INPUT"
 ipset create pub-port-set bitmap:port range 0-65535
 
 # 如果应用程序端口有变化，需及时更新该 set，否则正常用户会被当成扫描者
-# ipset add pub-port-set 12345
+ipset add pub-port-set 22
+# ipset add pub-port-set 443
+# 添加更多端口 ...
+
 
 # 名单最大条数
-# 例如 100Mbps 网络下 IP_DENY_SECOND 秒能收到多少 SYN 包？（SYN 最小 60B）
+# 例如 100Mbps 网络下 IP_DENY_SECOND 秒能收到多少 SYN 包？（SYN 最小 60B）
 IP_SET_MAX=$((100 * 1024 * 1024 / 8 / 60 * $IP_DENY_SECOND))
 
 # 扫描者名单
