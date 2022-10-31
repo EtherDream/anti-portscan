@@ -229,7 +229,7 @@ https://github.com/EtherDream/anti-portscan/blob/master/install.sh
 
 可以试试多久找出这个 HTTP 端口？
 
-IP：146.56.248.195
+https://etherdream.com:?????
 
 ![demo.png](demo.png)
 
@@ -237,6 +237,6 @@ IP：146.56.248.195
 <summary>查看答案：</summary>
   <details>
   <summary>确定查看？</summary>
-  http://146.56.248.195:39172
+  https://etherdream.com:39172
   </details>
 </details>
