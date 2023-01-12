@@ -1,0 +1,18 @@
+create ipv4-pub-port-tcp-set bitmap:port range 0-65535
+add ipv4-pub-port-tcp-set 22
+add ipv4-pub-port-tcp-set 80
+add ipv4-pub-port-tcp-set 443
+add ipv4-pub-port-tcp-set 8080
+add ipv4-pub-port-tcp-set 8443
+create ipv4-pub-port-udp-set bitmap:port range 0-65535
+add ipv4-pub-port-udp-set 443
+create ipv6-pub-port-tcp-set bitmap:port range 0-65535
+add ipv6-pub-port-tcp-set 22
+add ipv6-pub-port-tcp-set 80
+add ipv6-pub-port-tcp-set 443
+add ipv6-pub-port-tcp-set 8080
+add ipv6-pub-port-tcp-set 8443
+create ipv6-pub-port-udp-set bitmap:port range 0-65535
+add ipv6-pub-port-udp-set 443
+create scanner-ipv4-set hash:ip family inet hashsize 1024 maxelem 6553590 timeout 30 counters bucketsize 12 initval 0x392ef006
+create scanner-ipv6-set hash:ip family inet6 hashsize 1024 maxelem 6553590 timeout 30 counters bucketsize 12 initval 0x816b2c26
