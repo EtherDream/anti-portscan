@@ -35,9 +35,9 @@ COMMIT
 -A trap-scan -j SET --add-set scanner-ipv6-set src
 -A trap-scan -j DROP_LOG
 #-A record-ingress -j LOG --log-level warning --log-prefix "UDP IN (RECORD): "
--A record-ingress -j SET --add-set ipv6-egress-port-set dst,dst,dst --exist
-#-A no-match-pub-udp -m set ! --match-set ipv6-egress-port-set dst,dst,dst -j LOG --log-level warning --log-prefix "UDP IN DROP: "
--A no-match-pub-udp -m set ! --match-set ipv6-egress-port-set dst,dst,dst -j trap-scan
+-A record-ingress -j SET --add-set ipv6-egress-port-set dst,dst --exist
+#-A no-match-pub-udp -m set ! --match-set ipv6-egress-port-set dst,dst -j LOG --log-level warning --log-prefix "UDP IN DROP: "
+-A no-match-pub-udp -m set ! --match-set ipv6-egress-port-set dst,dst -j trap-scan
 -A DROP_LOG -j LOG --log-level warning --log-prefix "DROP: "
 -A DROP_LOG -j DROP
 -I PREROUTING -i eth0 -j scaner-detect
@@ -58,7 +58,7 @@ COMMIT
 :POSTROUTING ACCEPT [0:0]
 :record-egress - [0:0]
 #-A record-egress -j LOG --log-level warning --log-prefix "UDP OUT (RECORD): "
--A record-egress -j SET --add-set ipv6-egress-port-set src,src,src --exist
+-A record-egress -j SET --add-set ipv6-egress-port-set src,src --exist
 -I POSTROUTING -o eth0 -p udp -j record-egress
 COMMIT
 # Completed on Sat Jan 14 01:45:15 HKT 2023
