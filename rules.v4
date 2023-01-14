@@ -6,13 +6,15 @@
 :OUTPUT ACCEPT [0:0]
 :POSTROUTING ACCEPT [0:0]
 :trap-scan - [0:0]
+:exception-pkt - [0:0]
 :DROP_LOG - [0:0]
 -A trap-scan -m set --match-set scanner-ipv4-set src -j DROP_LOG
 -A trap-scan -j SET --add-set scanner-ipv4-set src
 -A trap-scan -j DROP_LOG
--A DROP_LOG -j LOG --log-level warning --log-prefix "DROP: "
+-A exception-pkt -j DROP_LOG
+-A DROP_LOG -j LOG --log-level warning --log-prefix "[mangle] DROP: "
 -A DROP_LOG -j DROP
--I PREROUTING -i eth0 -p tcp ! --syn -m conntrack ! --ctstate RELATED,ESTABLISHED -j trap-scan
+-I PREROUTING -i eth0 -p tcp ! --syn -m conntrack ! --ctstate RELATED,ESTABLISHED -j exception-pkt
 COMMIT
 # Completed on Sat Jan 14 01:45:15 HKT 2023
 # Created by IriKa Qiu on Sat Jan 14 01:45:15 HKT 2023
@@ -38,7 +40,7 @@ COMMIT
 -A record-ingress -j SET --add-set ipv4-egress-port-set dst,dst --exist
 #-A no-match-pub-udp -m set ! --match-set ipv4-egress-port-set dst,dst -j LOG --log-level warning --log-prefix "UDP IN DROP: "
 -A no-match-pub-udp -m set ! --match-set ipv4-egress-port-set dst,dst -j trap-scan
--A DROP_LOG -j LOG --log-level warning --log-prefix "DROP: "
+-A DROP_LOG -j LOG --log-level warning --log-prefix "[raw] DROP: "
 -A DROP_LOG -j DROP
 -I PREROUTING -i eth0 -j scaner-detect
 COMMIT
